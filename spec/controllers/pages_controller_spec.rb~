@@ -10,7 +10,7 @@ describe PagesController do
     end
     it "should have right title" do
       get 'home'
-      response.should have_selector("title", text: "Rails sample app | Home")
+      response.should have_selector(:title, text: "Rails sample app | Home")
     end
   end
 

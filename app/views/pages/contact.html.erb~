@@ -1,0 +1,10 @@
+<!DOCTYPE html >
+<html>
+  <head>
+    <title>Rails sample app | <%= @title %></title>
+  </head>
+  <body>
+    <h1>Contact Page</h1>
+    <p>This is the contact page </P>
+  </body>
+</html>

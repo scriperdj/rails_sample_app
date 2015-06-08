@@ -10,6 +10,7 @@ end
 group :production do
   gem 'pg'
 end
+gem 'test-unit'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -49,10 +50,10 @@ group :development, :test do
 end
 
 group :development do
-	gem 'rspec-rails', '2.0.1'
+	gem 'rspec-rails', '~> 3.0'
 end
 
 group :test do
-	gem 'rspec', '2.0.1'
+	gem 'rspec', '~> 3.0'
 	gem 'webrat', '0.7.1'
 end
