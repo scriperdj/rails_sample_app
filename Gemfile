@@ -10,6 +10,7 @@ end
 group :production do
   gem 'pg'
 end
+group :test do  gem "capybara", "~> 2.2.0" end
 gem 'test-unit'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -55,5 +56,5 @@ end
 
 group :test do
 	gem 'rspec', '~> 3.0'
-	gem 'webrat', '0.7.1'
+	
 end
