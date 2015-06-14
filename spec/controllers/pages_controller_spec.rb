@@ -13,7 +13,7 @@ describe PagesController do
       response.should be_success
     end
     it "should have right title" do
-      visit '/pages/home'
+      visit root_path
       page.should have_title(@base_title + 'Home')
       #expect(page).to have_title "Rails sample app | Home"
     end
@@ -25,7 +25,7 @@ describe PagesController do
       response.should be_success
     end
     it "should have right title" do
-      visit '/pages/contact'
+      visit contact_path
       page.should have_title(@base_title + 'Contact')
       #response.should have_selector("title", :content => @base_title + "Contact")
     end
@@ -37,7 +37,7 @@ describe PagesController do
       response.should be_success
     end
     it "should have the right title" do
-      visit '/pages/about'
+      visit about_path
       page.should have_title(@base_title + 'About')
     end
   end
@@ -48,7 +48,7 @@ describe PagesController do
       response.should be_success
     end
     it "should have the right title" do
-      visit '/pages/help'
+      visit help_path
       page.should have_title(@base_title + 'Help')
     end
   end
