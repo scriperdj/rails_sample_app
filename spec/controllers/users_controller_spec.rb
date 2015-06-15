@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe UserController, type: :controller do
+RSpec.describe UsersController, type: :controller do
   
   render_views
 
@@ -11,7 +11,7 @@ RSpec.describe UserController, type: :controller do
     end
     
     it "should have right title" do
-      visit '/user/new'
+      visit signup_path
       page.should have_title("Sign up")
     end
     
