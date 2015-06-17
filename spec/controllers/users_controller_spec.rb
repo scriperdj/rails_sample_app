@@ -47,5 +47,46 @@ RSpec.describe UsersController, type: :controller do
 	end
  
   end
+  
+  describe "POST 'create'" do
+    describe "failure" do
+      before(:each) do
+        @attr = {:name=>"", :email=>"", :password=>"",:password_confirmation=>""}
+      end
+      it "should not create new user" do
+        lambda do
+          post :create, :user => @attr
+        end.should_not change(User, :count)
+      end
+      it "should have the right title" do
+	    post :create, :user => @attr
+	    expect(response.body).to have_title("Sign up")
+	  end
+	  it "should render the 'new' page" do
+    	post :create, :user => @attr
+	    response.should render_template('new')
+	  end
+	end
+	
+	describe "success" do
+	  before(:each) do
+	    @attr = {:name=>"Mohan", :email=>"mohan@gmail.com", :password=>"foobar", :password_confirmation=>"foobar"}
+	  end
+	  it "should create new user" do
+	    lambda do
+          post :create, :user => @attr
+        end.should change(User, :count).by(1)
+	  end
+	  it "should redirect to user profile" do
+	    post :create, :user => @attr
+	    response.should redirect_to(user_path(assigns(:user)))
+	  end
+	  it "should have welcome message" do
+	    post :create, :user => @attr
+	    flash[:success].should =~ /welcome to rails sample app/i
+	  end
+	end
+    
+  end
 
 end 
