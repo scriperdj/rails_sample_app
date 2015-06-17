@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   #pending "add some examples to (or delete) #{__FILE__}"
   
   before(:each) do
-    @attr = {:name=>"Example User", :email=>"user@example.com"}
+    @attr = {:name=>"Example User", :email=>"user@example.com", :password=>"foobar", :password_confirmation=>"foobar"}
   end
   
   it "should create new user with vaild attributes" do
@@ -56,4 +56,61 @@ RSpec.describe User, type: :model do
     identical_email_user.should_not be_valid
   end
   
+  it "should require a password" do
+    User.new(@attr.merge(:password=>"",:password_confirmation=>"")).should_not be_valid
+  end
+  
+  it "should have matching password confirmaion" do
+    User.new(@attr.merge(:password_confirmation=>"invalid")).should_not be_valid
+  end
+  
+  it "should reject short password" do
+    short_pass = "a" * 5
+    User.new(@attr.merge(:password=>short_pass,:password_confirmation=>short_pass)).should_not be_valid
+  end
+  
+  it "should reject long password" do
+    long = "a" * 41
+    User.new(@attr.merge(:password=>long,:password_confirmation=>long)).should_not be_valid    
+  end
+  
+  describe "password encryption" do
+    before(:each) do
+      @user = User.create!(@attr)
+    end
+    
+    it "should have encrypted password" do
+      @user.should respond_to(:encrypted_password)
+    end
+    
+    it "should not be blank" do
+      @user.encrypted_password.should_not be_blank
+    end
+    
+    describe "password match" do
+      it "should be true if the passwords match" do
+		@user.has_password?(@attr[:password]).should be true
+	  end
+      it "should be false if password doesnt match" do
+        @user.has_password?("invalid").should be false
+      end
+    end
+    
+    describe "authentication method" do
+      it "should return nill if password wrong" do
+        wrong_password_user = User.authenticate(@attr[:email], "worngpass") 
+        wrong_password_user.should be_nil
+      end
+      
+      it "should return nill if user not exist" do
+        invalid_user = User.authenticate("foo@bar.com", @attr[:password])
+      end
+      
+      it "should return object if user with password exist" do
+        valid_user = User.authenticate(@attr[:email],@attr[:password])
+        valid_user == @user
+      end
+    end
+  end
+    
 end

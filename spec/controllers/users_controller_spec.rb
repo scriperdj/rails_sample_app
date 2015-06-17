@@ -16,5 +16,36 @@ RSpec.describe UsersController, type: :controller do
     end
     
   end
+  
+  describe "'GET' #show", type: :feature do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      get :show, :id => @user
+    end
+    
+    it "should be successful" do
+      
+      response.should be_success
+    end
+    
+    it "should have right user" do
+      
+      assigns(:user).should == @user 	
+    end
+    
+    it "should have right title" do
+      expect(response.body).to have_title(@user.name)
+    end
+    
+    it "should include the user's name" do
+	  expect(response.body).to have_selector('h1', text: @user.name)
+	  #response.should have_selector('h1', :text => @user.name)
+	end
+	
+	it "should have user avatar" do
+	  expect(response.body).to have_selector("h1>img.gravatar")
+	end
+ 
+  end
 
-end
+end 
