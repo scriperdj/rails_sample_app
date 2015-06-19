@@ -15,6 +15,11 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
+  
+  def test_sign_in(user)
+    controller.sign_in(user)
+  end
+  
   config.mock_with :rspec
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -25,4 +30,17 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
+  
+  config.before(:suite) do
+    DatabaseCleaner[:active_record].strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end

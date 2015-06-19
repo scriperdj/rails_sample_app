@@ -32,4 +32,27 @@ RSpec.describe "Users", type: :request do
 		end
 	end
   end
+  describe "Sign in/out", type: :feature do
+    describe "failure" do
+      it "should not signin a user" do
+        visit signin_path
+        fill_in "Email", :with => ""
+        fill_in "Password", :with => ""
+        click_button "Sign in"
+        page.should have_selector("div.error", :text => "invalid")
+      end
+    end
+    describe "success" do
+      it "should signin " do
+        visit signin_path
+        user = FactoryGirl.create(:user)
+        fill_in "Email", :with => user.email
+        fill_in "Password", :with => user.password
+        click_button "Sign in"
+     #   controller.should be_signed_in
+        click_link "Sign out"
+      #  controller.should_not be_signed_in
+      end
+    end
+  end
 end

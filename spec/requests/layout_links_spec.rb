@@ -42,7 +42,31 @@ RSpec.describe "LayoutLinks", type: :request do
       visit root_path
       click_link "Sign Up"
       page.should have_title('Sign up')
+    end     
+  end
+  
+  describe "when not signed in", type: :feature do
+    it "should have a signin link" do
+      visit root_path
+      page.should have_selector('a', :text => "Sign in")
     end
-        
+  end
+  
+  describe "when signed in", type: :feature do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      visit signin_path
+      fill_in "Email", :with => @user.email
+      fill_in "Password", :with => @user.password
+      click_button "Sign in"
+    end
+    it "should have sign out link" do
+      visit root_path
+      page.should have_selector('a', :text => "Sign out")
+    end
+    it "should have profile link" do
+      visit root_path
+      page.should have_selector('a', :text => "Profile")
+    end
   end
 end
