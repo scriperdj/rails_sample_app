@@ -20,6 +20,13 @@ RSpec.configure do |config|
     controller.sign_in(user)
   end
   
+  def integration_sign_in(user)
+     visit signin_path
+     fill_in "Email", :with => user.email
+     fill_in "Password", :with => user.password
+     click_button "Sign in"     
+  end
+  
   config.mock_with :rspec
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

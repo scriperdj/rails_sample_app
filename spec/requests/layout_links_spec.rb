@@ -55,10 +55,7 @@ RSpec.describe "LayoutLinks", type: :request do
   describe "when signed in", type: :feature do
     before(:each) do
       @user = FactoryGirl.create(:user)
-      visit signin_path
-      fill_in "Email", :with => @user.email
-      fill_in "Password", :with => @user.password
-      click_button "Sign in"
+      integration_sign_in(@user)
     end
     it "should have sign out link" do
       visit root_path

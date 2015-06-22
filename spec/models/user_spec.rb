@@ -79,6 +79,19 @@ RSpec.describe User, type: :model do
       @user = User.create!(@attr)
     end
     
+    it "should have admin attribute" do
+      @user.should respond_to(:admin)
+    end
+    
+    it "should be convertable to admin" do
+      @user.toggle!(:admin)
+      @user.should be_admin
+    end
+    
+    it "should not be admin by default" do
+      @user.should_not be_admin
+    end
+    
     it "should have encrypted password" do
       @user.should respond_to(:encrypted_password)
     end
