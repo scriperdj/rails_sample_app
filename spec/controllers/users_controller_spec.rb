@@ -20,30 +20,41 @@ RSpec.describe UsersController, type: :controller do
   describe "'GET' #show", type: :feature do
     before(:each) do
       @user = FactoryGirl.create(:user)
-      get :show, :id => @user
+      
     end
     
     it "should be successful" do
-      
+      get :show, :id => @user
       response.should be_success
     end
     
     it "should have right user" do
-      
+      get :show, :id => @user
       assigns(:user).should == @user 	
     end
     
     it "should have right title" do
+      get :show, :id => @user
       expect(response.body).to have_title(@user.name)
     end
     
     it "should include the user's name" do
+      get :show, :id => @user
 	  expect(response.body).to have_selector('h1', text: @user.name)
 	  #response.should have_selector('h1', :text => @user.name)
 	end
 	
 	it "should have user avatar" do
+	  get :show, :id => @user
 	  expect(response.body).to have_selector("h1>img.gravatar")
+	end
+	
+	it "should show the user's microposts" do
+  	  mp1 = FactoryGirl.create(:micropost, :user => @user, :content => "Foo bar")
+	  mp2 = FactoryGirl.create(:micropost, :user => @user, :content => "Baz quux")
+	  get :show, :id => @user
+	  expect(response.body).to have_selector("span.content", :text => mp1.content)
+	  expect(response.body).to have_selector("span.content", :text => mp2.content)
 	end
  
   end

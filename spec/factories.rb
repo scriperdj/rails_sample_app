@@ -10,3 +10,10 @@ FactoryGirl.define do
   end
 end
 
+FactoryGirl.define do
+  factory :micropost do |micropost|
+    micropost.content "Foo bar"
+    micropost.association :user
+  end
+end
+

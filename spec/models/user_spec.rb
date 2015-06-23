@@ -7,6 +7,39 @@ RSpec.describe User, type: :model do
     @attr = {:name=>"Example User", :email=>"user@example.com", :password=>"foobar", :password_confirmation=>"foobar"}
   end
   
+  describe "microposts associations" do 
+    before(:each) do
+      @user = User.create(@attr)
+      @mp1 = FactoryGirl.create(:micropost, :user => @user, :created_at=> 1.day.ago)
+      @mp2 = FactoryGirl.create(:micropost, :user => @user, :created_at => 1.hour.ago)
+    end
+    describe "status feed" do
+      it "should have feed" do
+        @user.should respond_to(:feed)
+      end
+      it "should include user microposts" do
+        @user.feed.include?(@mp1).should be true
+        @user.feed.include?(@mp2).should be true
+      end
+      it "should not include others posts" do
+        mp3 = FactoryGirl.create(:micropost, :user => FactoryGirl.create(:user, :email=> FactoryGirl.generate(:email)))
+        @user.feed.include?(mp3).should be false
+      end
+    end
+    it "should have micropost attribute" do
+      @user.should respond_to(:microposts)
+    end
+    it "should have right order of posts" do
+      @user.microposts.should == [@mp2, @mp1]
+    end
+    it "should destroy associated microposts" do
+      @user.destroy
+      [@mp1, @mp2].each do |mp|
+        Micropost.find_by_id(mp.id).should be_nil
+      end
+    end
+  end
+  
   it "should create new user with vaild attributes" do
     User.create!(@attr)
   end

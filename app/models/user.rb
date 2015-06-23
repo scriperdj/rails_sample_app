@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
     User.create(user_params)
   end
   
+  has_many :microposts, :dependent => :destroy
+  
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   validates(:name, :presence => true,:length=>{:maximum=>50})
@@ -26,6 +28,10 @@ class User < ActiveRecord::Base
   def self.authenticate_with_salt(id, cookie_salt)
     user = find_by_id(id)
     (user && user.salt == cookie_salt) ? user : nil
+  end
+  
+  def feed
+    Micropost.where("user_id = ?", id)
   end
   
   private
