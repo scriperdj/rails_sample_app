@@ -17,6 +17,18 @@ describe PagesController do
       page.should have_title(@base_title + 'Home')
       #expect(page).to have_title "Rails sample app | Home"
     end
+    describe "when signed in" do
+      before(:each) do
+		@user = test_sign_in(FactoryGirl.create(:user))
+		other_user = FactoryGirl.create(:user, :email => FactoryGirl.generate(:email))
+		other_user.follow!(@user)
+	  end
+	  it "should have the right follower/following counts" do
+		get 'home'
+		expect(response.body).to have_link("0 following", href: following_user_path(@user))
+		expect(response.body).to have_link("1 follower", href: followers_user_path(@user))
+	  end
+    end
   end
 
   describe "GET 'contact'", type: :feature  do

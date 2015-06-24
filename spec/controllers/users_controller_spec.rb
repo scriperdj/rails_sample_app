@@ -3,6 +3,37 @@ require 'spec_helper'
 RSpec.describe UsersController, type: :controller do
   
   render_views
+  
+  describe "follow pages" do
+    describe "when not signed in" do
+      it "should protect 'following'" do
+	    get :following, :id => 1
+		response.should redirect_to(signin_path)
+	  end
+	  it "should protect 'followers'" do
+		get :followers, :id => 1
+		response.should redirect_to(signin_path)
+	  end
+    end
+    describe "when signed in" do
+      before(:each) do
+		@user = test_sign_in(FactoryGirl.create(:user))
+		@other_user = FactoryGirl.create(:user, :email => FactoryGirl.generate(:email))
+		@user.follow!(@other_user)
+	  end
+	  it "should show user following" do
+		get :following, :id => @user
+		expect(response.body).to have_link(@other_user.name, href: user_path(@other_user))
+		
+	  end
+	  it "should show user followers" do
+		get :followers, :id => @other_user
+		expect(response.body).to have_link(@user.name, href: user_path(@user))
+		
+	  end
+    end
+  end
+  
 
   describe "GET #new", type: :feature do
     it "returns http success" do
