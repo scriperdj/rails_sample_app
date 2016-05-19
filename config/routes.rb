@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'pages/about'
 
   get 'home/contact'
-  
+
   get 'pages/help'
   
   match '/about', :to => 'pages#about', :via => [:get]
@@ -19,9 +19,9 @@ Rails.application.routes.draw do
   match '/signup', :to => 'users#new', :via => [:get]
   match '/signin', :to => 'sessions#new', :via => [:get]
   match '/signout', :to => 'sessions#destroy', :via => [:get]
-  
+
   root :to => 'pages#home'
-  
+
   resources :users do
 	member do
 	  get :following, :followers

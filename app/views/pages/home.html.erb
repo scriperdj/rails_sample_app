@@ -13,8 +13,43 @@
     </tr>
   </table>
 <% else %>
-    <h1>Sample App </h1>
+    <h1>Sample App</h1>
     <p>This is the home page </p>
     <%= link_to("Sign Up", signup_path, :class=> "signup_button round") %>
-<% end %>
+    <a href="http://fateheducation.com/customerlab/RLP-1-IR-Events-Files-new/fatehnew.html">Link to FatheEducation.</a>
+    <div>
+      <% if current_user %>
+        Signed in as <strong><%= current_user.name %></strong>!
+        <%= link_to "Sign out", signout_path, id: "sign_out" %>
+      <% else %>
+        <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+      <% end %>
+    </div>
+    <form cl-ignore="on" target="frmpost" id="form_elm_28" onsubmit="return validate_form('form_elm_28');" method="post" action="/Handler/Handler.aspx?formtype=1&amp;form_id=form_elm_28&amp;pageid=265792"><div cl-ignore="on" class="form-container ltr"><input cl-ignore="on" id="submission_action" value="{&quot;message_box&quot;:{&quot;message&quot;:&quot;Thank you very much&quot;,&quot;url&quot;:null,&quot;target&quot;:null,&quot;width&quot;:0,&quot;height&quot;:0}}" type="hidden"><div cl-ignore="on" class="field-container" style="margin-bottom:22px;" data-fieldid="vladFh2a">
+                           <div cl-ignore="on" class="form-inline">
+                               <label cl-ignore="on" style="width:88px;font-size:15px;font-family:Arial;color:#ffffff;" class="field-label">Name:<span cl-ignore="on" class="req-field">*</span></label>
+                               <input cl-ignore="on" data-validation="required" value="" style="height: 35px; width: 200px; color: rgb(0, 0, 0); font-family: arial; font-size: 12px; border: 1px solid rgb(209, 209, 209); border-radius: 3px; background-color: rgb(255, 255, 255);" placeholder="" name="vladFh2a" id="vladFh2a" type="text">
+                           </div>
+                       </div><div cl-ignore="on" class="field-container" style="margin-bottom:22px;" data-fieldid="xvEev4jp">
+                           <div cl-ignore="on" class="form-inline">
+                               <label cl-ignore="on" style="width: 88px; font-size: 15px; font-family: Arial; color: rgb(255, 255, 255);" class="field-label">Email:<span cl-ignore="on" class="req-field">*</span></label>
+                               <input cl-ignore="on" data-validation="required,email" value="" style="height: 35px; width: 200px; color: rgb(0, 0, 0); font-family: arial; font-size: 12px; border: 1px solid rgb(209, 209, 209); border-radius: 3px; background-color: rgb(255, 255, 255);" placeholder="" name="xvEev4jp" id="xvEev4jp" type="text">
+                           </div>
+                       </div><div cl-ignore="on" class="field-container" style="margin-bottom:22px;" data-fieldid="WpkzLgum">
+                           <div cl-ignore="on" class="form-inline">
+                               <label cl-ignore="on" style="width: 88px; font-size: 15px; font-family: Arial; color: rgb(255, 255, 255);" class="field-label">Phone:<span cl-ignore="on" class="req-field">*</span></label>
+                               <input cl-ignore="on" data-validation="required" value="" style="height: 35px; width: 200px; color: rgb(0, 0, 0); font-family: arial; font-size: 12px; border: 1px solid rgb(209, 209, 209); border-radius: 3px; background-color: rgb(255, 255, 255);" placeholder="" name="WpkzLgum" id="WpkzLgum" type="text">
+                           </div>
+                       </div><div cl-ignore="on" class="field-container" style="margin-bottom:22px;" data-fieldid="ECxN47PD">
+                           <div cl-ignore="on" class="form-inline">
+                               <label cl-ignore="on" style="width: 88px; font-size: 15px; font-family: Arial; color: rgb(255, 255, 255);" class="field-label">Address:</label>
+                               <input cl-ignore="on" data-validation="" value="" style="height: 35px; width: 200px; color: rgb(0, 0, 0); font-family: arial; font-size: 12px; border: 1px solid rgb(209, 209, 209); border-radius: 3px; background-color: rgb(255, 255, 255);" placeholder="" name="ECxN47PD" id="ECxN47PD" type="text">
+                           </div>
+                       </div><div cl-ignore="on" style="cursor: pointer;" class="field-container button"><div cl-ignore="on" class="form-inline"><label cl-ignore="on" style="width:88px;" class="field-label"></label><input cl-ignore="on" style="width: 200px; height: 45px; background-color: rgb(204, 24, 30); background-position: center center; background-repeat: no-repeat; border: 0px solid rgb(0, 0, 0); color: rgb(255, 255, 255); font-family: arial; font-size: 17px; border-radius: 2px; background-image: -moz-linear-gradient(center top , rgb(234, 185, 45) 0%, rgb(199, 152, 16) 100%);" value="Submit" type="submit"></div></div></div></form>
+<div id="_1759852a-b971-2e19-64a5-a087ce5fb063" class="_1759852a-b971-2e19-64a5-a087ce5fb063">
+<p style="text-align: center;">
+<span style="padding: 0px; margin-bottom: 0px; margin-top: 0px; font-family: 'Open Sans',Arial, Helvetica, sans-serif; font-size: 50px; letter-spacing: -1px; line-height: 54px; color: #ffffff; font-weight: bold;">That’s all, Thank you!</span>
+</p>
+</div>
 
+<% end %>

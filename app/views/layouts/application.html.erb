@@ -3,10 +3,149 @@
  <head>
    <title><%= title %></title>
    <%= csrf_meta_tag %>
+   <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.23.1.css">
    <%= render "layouts/stylesheets" %>
    <%= javascript_include_tag "application" %>
+ <!--<script type="text/javascript">
+    !function(){
+    var analytics=window.analytics=window.analytics||[];
+    if(!analytics.initialize)
+      if(analytics.invoked)
+        window.console&&console.error&&console.error("Segment snippet included twice.");
+      else{
+        analytics.invoked=!0;
+        analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];
+        analytics.factory=function(t){
+          return function(){
+            var e=Array.prototype.slice.call(arguments);
+            e.unshift(t);
+            analytics.push(e);
+            return analytics}
+          };
+        for(var t=0;t<analytics.methods.length;t++){
+          var e=analytics.methods[t];
+          analytics[e]=analytics.factory(e)
+        }
+        analytics.load=function(t){
+          var e=document.createElement("script");
+          e.type="text/javascript";
+          e.async=!0;
+          e.src=("https:"===document.location.protocol?"https://":"http://")+"localhost:3000/analytics.js";
+          var n=document.getElementsByTagName("script")[0];
+          n.parentNode.insertBefore(e,n)
+        };
+        analytics.SNIPPET_VERSION="3.0.1";
+    analytics.load("4TGP8IYLawsbn7u8EvSD60lk44KZXrU0");
+    analytics.page();
+    analytics.identify('userId');
+    analytics.track('Logged In');
+    analytics.track('Logged Out');
+    analytics.track('Signed Up');
+    analytics.track('product viewed', {
+  price: 123,
+  'product color': 'Blue',
+  'product name': 'shirt'
+});;
+    }}();
+  </script>
+<!--    <script type="text/javascript">
+/*      window.heap=window.heap||[],heap.load=function(e,t){
+		  console.log('e>' + e);
+		  console.log('t>' + t);
+		  window.heap.appid=e,window.heap.config=t=t||{};
+      var n=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");
+      a.type="text/javascript",a.async=!0,a.src="/heap-"+e+".js";
+      var o=document.getElementsByTagName("script")[0];
+      o.parentNode.insertBefore(a,o);
+      for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=r(p[c])
+		  console.log('t>>' + JSON.stringify(t));
+		  console.log('arguments>>' + JSON.stringify(arguments))};
+      heap.load("722724460");
+ */
+    </script> !-->
+
+<!--    <script>
+(function(i, s, o, g, r, a, m) {
+    i['ClAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//127.0.0.1:8000/static/js/tracking-test.js', 'cl');
+cl('create', 'CL-tBmdGO-TJ', 'auto');
+//cl('send', 'pageview');
+cl('send', 'pageview', '{"key1" : "val1", "key2" : "val2"}');
+</script>
+<script>
+(function(i, s, o, g, r, a, m) {
+    i['ClAnalyticsObject'] = r;
+    i[r] = i[r] || [],
+    i[r].methods=["trackSubmit","trackClick","pageview","identify","track"],
+    i[r].factory=function(t){
+      return function(){
+      //  o={},e=Array.prototype.slice.call(arguments),s={},o.name = e[0],o.ts=1*new Date(),o.att = e[1];
+      //  s[t] = o;
+        var e=Array.prototype.slice.call(arguments);
+        e.unshift(t);
+
+        //i[r].push(s);
+        i[r].push(e);
+
+        return i[r]}
+      };
+      for(var t=0;t<i[r].methods.length;t++){
+        var e=i[r].methods[t];
+        i[r][e]=i[r].factory(e)
+      };
+    a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//127.0.0.1:8000/static/js/cltrack.js', '_cl');
+_cl.track('product viewed', {
+price: 123,
+'product color': 'Blue',
+'product name': 'shirt'
+});
+//_cl.identify('sathish@gmail.com', {name : 'sathish', state : 'pondicherry'});
+</script>!-->
+<!--Start of Heap Code
+<script type="text/javascript">
+  window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var n=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(n?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(a,o);for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=r(p[c])};
+  heap.load("920711279");
+</script>
+End of Heap Code !-->
+<script>!function(t,e,r,c,a,n,s){t.ClAnalyticsObject=a,t[a]=t[a]||[],t[a].methods=["trackSubmit","trackClick","pageview","identify","track"],t[a].factory=function(e){return function(){var r=Array.prototype.slice.call(arguments);return r.unshift(e),t[a].push(r),t[a]}};for(var i=0;i<t[a].methods.length;i++){var o=t[a].methods[i];t[a][o]=t[a].factory(o)};n=e.createElement(r),s=e.getElementsByTagName(r)[0],n.async=1,n.src=c,s.parentNode.insertBefore(n,s)}(window,document,"script","//localhost:8000/static/js/cltrack.js","_cl");</script>
+<script>
+  window.intercomSettings = {
+    app_id: "hih97yul",
+
+  };
+</script>
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/gwetvs1u';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+
+<!-- <script> !function(t,e,r,c,a,n,s){ t.ClAnalyticsObject=a,t[a]=t[a]||[],t[a].methods=["trackSubmit","trackClick","pageview","identify","track"], t[a].factory=function(e){return function(){var r=Array.prototype.slice.call(arguments);return r.unshift(e),t[a].push(r),t[a]}}; for(var i=0;i<t[a].methods.length;i++){var o=t[a].methods[i];t[a][o]=t[a].factory(o)}; n=e.createElement(r),s=e.getElementsByTagName(r)[0],n.async=1,n.src=c,s.parentNode.insertBefore(n,s) }(window,document,"script","//d3mz8gib1rijv2.cloudfront.net/cl3n0ys5l8N.js","_cl"); </script>
+!-->
+<script>
+window.Intercom("trackEvent", "store_purchase", {
+  "order_date": 1392036272,
+  "stripe_invoice": "inv_34343434",
+  "order_number": {
+      "value": "3434-3434",
+      "url": "https://example.com/orders/3434-3434"
+  }
+});
+</script>
+<script src="https://code.jquery.com/qunit/qunit-1.23.1.js"></script>
+<script src="/syn.js"></script>
  </head>
  <body>
+   <!-- <div id="qunit"></div> -->
 	<div class="container">
 		<%= render "layouts/header" %>
 		<section class="round">
@@ -18,6 +157,65 @@
 		<%= render "layouts/footer"  %>
 		<%= debug(params) if Rails.env.development? %>
    </div>
- </body>
+   <!--             <script type="text/javascript">
+function _pcm(u){setTimeout(function(){
+  console.log("call to _pcm");
+ var d=document, p="/",
+ t = "?v="+new Date().getTime().toString().slice(0,7) + "000000",
+ s=d.createElement("script");s.type="text/javascript";s.async=true;s.src=p+u+".js"+t;
+ var e=d.getElementsByTagName("script")[0];e.parentNode.insertBefore(s,e);
+},1);}_pcm("5656c2fe06b25703007c9331");
+</script>
+  <script type="text/javascript">
+ function _pcm(u){setTimeout(function(){
+  var d=document, p="//desv383oqqc0.cloudfront.net/",
+  t = "?v="+new Date().getTime().toString().slice(0,7) + "000000",
+  s=d.createElement("script");s.type="text/javascript";s.async=true;s.src=p+u+".js"+t;
+  var e=d.getElementsByTagName("script")[0];e.parentNode.insertBefore(s,e);
+ },1);}_pcm("5656c2fe06b25703007c9331");
+</script>!-->
+</body>
+<script>
+path = window.location.pathname
+// QUnit.test("form_submit testing",function(assert){
+  // setTimeout(function(){
+  if(path == "/signin"){
+    $("#session_email").val("admin@haristudio.com");
+    $("#session_password").val("haristudio");
+    syn.click(document.getElementsByName("commit")[0]);
+    img = $("._cltrckpx");
+    console.log("src=" + img[0].src);
+  //  alert("done");
+  }
+  function getEventName(query){
+    var result = {};
+    query.split("&").forEach(function(part) {
+      var item = part.split("=");
+      result[item[0]] = decodeURIComponent(item[1]);
+    });
+    // if(result["data"]){
+    raw = unescape(decodeURIComponent(atob(result["data"])));
+    data = JSON.parse(raw)
+    return data
+    // }
+  };
+  setTimeout(function(){
+     sel = $("._cltrckpx");
+     console.log("len=" + sel.length);
+     for (i=0;i<sel.length;i++){
+       var parser = document.createElement('a');
+       parser.href = sel[i].src
+       query = parser.search.substring(1);
+       if(query){
+         event = getEventName(query);
+         console.log("event = " + event["event"]);
+       }
+      //  console.log("src=" + sel[i].src);
+     }
+  },10000);
+
+  // },2000)
+// });
+</script>
 
 </html>
